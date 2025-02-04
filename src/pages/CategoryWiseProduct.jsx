@@ -1,22 +1,28 @@
+import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import ProductCard from "../components/ProductCard";
 import AnnoucementBar from "../components/AnnoucementBar";
 import NavBar from "../components/NavBar";
-import ProductCard from "../components/ProductCard";
 import Filter from "../components/FIlter";
 import SortBy from "../components/SortBy";
 
-export default function Product() {
-  let [products, setProducts] = useState([]);
-  let [savedProducts, setSavedProducts] = useState([]);
+export default function CategoryPage() {
+  let { categoryName } = useParams();
+  let [allProducts, setAllProducts] = useState({});
+  let [categoryProducts, setCategoryProducts] = useState([]);
+  let [savedCategoryProducts, setSavedCategoryProducts] = useState([]);
 
   useEffect(() => {
     fetch("/api/products")
       .then((response) => response.json())
       .then((data) => {
-        setProducts(data.TrueWirelessEarbuds);
-        setSavedProducts(data.TrueWirelessEarbuds);
+        setAllProducts(data);
+        if (data[categoryName]) {
+          setCategoryProducts(data[categoryName]);
+          setSavedCategoryProducts(data[categoryName]);
+        }
       });
-  }, []);
+  }, [categoryName]);
 
   let [cartCount, setCartCount] = useState(() => {
     return JSON.parse(localStorage.getItem("cartCount")) || 0;
@@ -26,37 +32,41 @@ export default function Product() {
     return localStorage.setItem("cartCount", JSON.stringify(cartCount));
   }, [cartCount]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [categoryName]);
+
   // Update Functions :
   let updateCartCount = (updatedCartCount) => {
     setCartCount(updatedCartCount);
   };
 
   let filterProducts = (filteredProducts) => {
-    setProducts(filteredProducts);
+    setCategoryProducts(filteredProducts);
   };
 
   let sortProducts = (sortedProducts) => {
-    setProducts((products) => [...sortedProducts]);
+    setCategoryProducts((products) => [...sortedProducts]);
   };
 
   return (
     <>
       <AnnoucementBar />
       <NavBar cartCount={cartCount} />
-      <main className="pt-[116px]">
+      <main className="mt-[116px]">
         <div className="max-w-[1600px] flex justify-between  px-10 mx-auto">
           <span>
             <Filter
-              savedProducts={savedProducts}
+              savedProducts={savedCategoryProducts}
               filterProducts={filterProducts}
             />
           </span>
           <span>
-            <SortBy products={products} sortProducts={sortProducts} />
+            <SortBy products={categoryProducts} sortProducts={sortProducts} />
           </span>
         </div>
         <ProductCard
-          products={products}
+          products={categoryProducts}
           cartCount={cartCount}
           updateCartCount={updateCartCount}
         />

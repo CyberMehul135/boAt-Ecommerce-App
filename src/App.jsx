@@ -4,6 +4,7 @@ import ProductDetails from "./pages/ProductDetails";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import Home from "./pages/Home";
+import CategoryWiseProduct from "./pages/CategoryWiseProduct";
 
 function App() {
   return (
@@ -13,6 +14,10 @@ function App() {
         <Route path="/product" element={<Product />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/category/:categoryName"
+          element={<CategoryWiseProduct />}
+        />
       </Routes>
     </Router>
   );

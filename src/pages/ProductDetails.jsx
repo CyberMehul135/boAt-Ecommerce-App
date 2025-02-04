@@ -9,7 +9,7 @@ export default function ProductDetails() {
   let [productDetail, setProductDetail] = useState();
 
   useEffect(() => {
-    fetch(`/api/products/${id}`)
+    fetch(`/api/product/${id}`)
       .then((response) => response.json())
       .then((data) => setProductDetail(data));
   }, [id]);

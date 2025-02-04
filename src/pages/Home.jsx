@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 import HeroSectionSlider from "../components/HeroSectionSlider";
 import ServiceHighlights from "../components/ServiceHighlights";
 import ProductCard from "../components/ProductCard";
+import Category from "../components/Category";
 
 export default function Home() {
   let [products, setProducts] = useState([]);
@@ -13,8 +14,8 @@ export default function Home() {
     fetch("/api/products")
       .then((response) => response.json())
       .then((data) => {
-        setProducts(data);
-        setSavedProducts(data);
+        setProducts(data.TrueWirelessEarbuds);
+        setSavedProducts(data.TrueWirelessEarbuds);
       });
   }, []);
 
@@ -38,6 +39,9 @@ export default function Home() {
       <main className="h-full pt-[116px] w-full">
         <HeroSectionSlider />
         <ServiceHighlights />
+        <div className="my-8">
+          <Category />
+        </div>
         <ProductCard
           products={products}
           cartCount={cartCount}
