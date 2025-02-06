@@ -387,7 +387,7 @@ createServer({
           price: 2999,
           orignalPrice: 8499,
           rating: 4.9,
-          sales: 439,
+          sales: 421,
           qty: 1,
         },
         {

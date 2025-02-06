@@ -7,12 +7,20 @@ export default function SortBy({ products, sortProducts }) {
     let sortedProducts =
       sort == "featured"
         ? products.sort((a, b) => a.id - b.id)
+        : sort == "best selling"
+        ? products.sort((a, b) => b.sales - a.sales)
         : sort == "high to low"
         ? products.sort((a, b) => b.price - a.price)
         : sort == "low to high"
         ? products.sort((a, b) => a.price - b.price)
-        : sort == "lowPrice"
-        ? products.filter((product) => product.price < 900)
+        : sort == "A to Z"
+        ? products.sort((a, b) =>
+            a.name.localeCompare(b.name, undefined, { numeric: true })
+          )
+        : sort == "Z to A"
+        ? products.sort((a, b) =>
+            b.name.localeCompare(a.name, undefined, { numeric: true })
+          )
         : products;
     sortProducts(sortedProducts);
     console.log(sortedProducts);
@@ -31,9 +39,11 @@ export default function SortBy({ products, sortProducts }) {
           className="cursor-pointer outline-none"
         >
           <option value="featured">Featured</option>
+          <option value="best selling">Best Selling</option>
           <option value="low to high">Price, low to high</option>
           <option value="high to low">Price, high to low</option>
-          <option value="lowPrice">Low Price</option>
+          <option value="A to Z">Alphabetically, A - Z</option>
+          <option value="Z to A">Alphabetically, Z - A</option>
         </select>
       </div>
     </div>
