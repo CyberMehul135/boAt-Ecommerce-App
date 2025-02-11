@@ -3,14 +3,16 @@ import { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 import AnnoucementBar from "../components/AnnoucementBar";
 import NavBar from "../components/NavBar";
-import Filter from "../components/FIlter";
 import SortBy from "../components/SortBy";
+import Filter from "../components/Filter";
 
 export default function CategoryPage() {
   let { categoryName } = useParams();
   let [allProducts, setAllProducts] = useState({});
   let [categoryProducts, setCategoryProducts] = useState([]);
   let [savedCategoryProducts, setSavedCategoryProducts] = useState([]);
+
+  console.log(savedCategoryProducts);
 
   useEffect(() => {
     fetch("/api/products")

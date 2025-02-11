@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import AnnoucementBar from "../components/AnnoucementBar";
 import NavBar from "../components/NavBar";
 import ProductCard from "../components/ProductCard";
-import Filter from "../components/FIlter";
 import SortBy from "../components/SortBy";
+import Filter from "../components/Filter";
 
 export default function Product() {
+  let [allProducts, setAllProducts] = useState({});
   let [products, setProducts] = useState([]);
   let [savedProducts, setSavedProducts] = useState([]);
 
@@ -13,10 +14,15 @@ export default function Product() {
     fetch("/api/products")
       .then((response) => response.json())
       .then((data) => {
-        setProducts(data.TrueWirelessEarbuds);
-        setSavedProducts(data.TrueWirelessEarbuds);
+        setAllProducts(data);
       });
   }, []);
+
+  useEffect(() => {
+    let newValue = Object.values(allProducts).flat();
+    setProducts(newValue);
+    setSavedProducts(newValue);
+  }, [allProducts]);
 
   let [cartCount, setCartCount] = useState(() => {
     return JSON.parse(localStorage.getItem("cartCount")) || 0;
