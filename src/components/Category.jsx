@@ -12,7 +12,7 @@ export default function Category() {
   }, []);
 
   return (
-    <div className="px-11 flex justify-around  max-w-[1600px] mx-auto text-sm font-bold">
+    <div className="px-11 flex justify-around  max-w-[1600px] mx-auto text-sm font-bold max-md:px-3 max-sm:flex flex-wrap gap-2">
       {Object.values(allProducts).map((product, idx) => {
         return (
           <span
@@ -23,7 +23,9 @@ export default function Category() {
             <span className="max-w-[82px] max-h-[82px]">
               <img src={product[0].categoryImage} alt={product[0].category} />
             </span>
-            <span className="text-center">{product[0].categoryName}</span>
+            <span className="text-center max-md:text-[12px]">
+              {product[0].categoryName}
+            </span>
           </span>
         );
       })}

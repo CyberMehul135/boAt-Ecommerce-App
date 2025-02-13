@@ -30,50 +30,85 @@ export default function HeroSectionSlider() {
       >
         <SwiperSlide>
           <img
-            className="w-full"
+            className="w-full block max-md:hidden"
             src="/heroImages/Hero1.jpg"
             alt="earphone-image"
           />
+          <img
+            className="w-full hidden max-md:block"
+            src="/heroImagesPhone/Boat1.webp"
+            alt="earphone-image"
+          />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            className="w-full"
+            className="w-full block max-md:hidden"
             src="/heroImages/Hero2.jpg"
             alt="earphone-image"
           />
+          <img
+            className="w-full hidden max-md:block"
+            src="/heroImagesPhone/Boat2.webp"
+            alt="earphone-image"
+          />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            className="w-full"
+            className="w-full block max-md:hidden"
             src="/heroImages/Hero3.jpg"
             alt="earphone-image"
           />
+          <img
+            className="w-full hidden max-md:block"
+            src="/heroImagesPhone/Boat3.webp"
+            alt="earphone-image"
+          />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            className="w-full"
+            className="w-full block max-md:hidden"
             src="/heroImages/Hero4.jpg"
             alt="earphone-image"
           />
+          <img
+            className="w-full hidden max-md:block"
+            src="/heroImagesPhone/Boat4.webp"
+            alt="earphone-image"
+          />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            className="w-full"
+            className="w-full block max-md:hidden"
             src="/heroImages/Hero5.jpg"
             alt="earphone-image"
           />
-        </SwiperSlide>
-        <SwiperSlide>
           <img
-            className="w-full"
-            src="/heroImages/Hero6.jpg"
+            className="w-full hidden max-md:block"
+            src="/heroImagesPhone/Boat5.webp"
             alt="earphone-image"
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            className="w-full"
+            className="w-full block max-md:hidden"
+            src="/heroImages/Hero6.jpg"
+            alt="earphone-image"
+          />
+          <img
+            className="w-full hidden max-md:block"
+            src="/heroImagesPhone/Boat6.webp"
+            alt="earphone-image"
+          />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img
+            className="w-full block max-md:hidden"
             src="/heroImages/Hero7.jpg"
+            alt="earphone-image"
+          />
+          <img
+            className="w-full hidden max-md:block"
+            src="/heroImagesPhone/Boat7.webp"
             alt="earphone-image"
           />
         </SwiperSlide>
