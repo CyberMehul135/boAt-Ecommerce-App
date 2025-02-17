@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import AnnoucementBar from "../components/AnnoucementBar";
 import Button from "../components/Button";
+import Footer from "../components/Footer";
 
 export default function ProductDetails() {
   let { id } = useParams();
@@ -94,6 +95,7 @@ export default function ProductDetails() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

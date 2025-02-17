@@ -5,6 +5,7 @@ import AnnoucementBar from "../components/AnnoucementBar";
 import NavBar from "../components/NavBar";
 import SortBy from "../components/SortBy";
 import Filter from "../components/Filter";
+import Footer from "../components/Footer";
 
 export default function CategoryPage() {
   let { categoryName } = useParams();
@@ -73,6 +74,7 @@ export default function CategoryPage() {
           updateCartCount={updateCartCount}
         />
       </main>
+      <Footer />
     </>
   );
 }

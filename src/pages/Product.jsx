@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 import ProductCard from "../components/ProductCard";
 import SortBy from "../components/SortBy";
 import Filter from "../components/Filter";
+import Footer from "../components/Footer";
 
 export default function Product() {
   let [allProducts, setAllProducts] = useState({});
@@ -67,6 +68,7 @@ export default function Product() {
           updateCartCount={updateCartCount}
         />
       </main>
+      <Footer />
     </>
   );
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import AnnoucementBar from "../components/AnnoucementBar";
 import NavBar from "../components/NavBar";
 import CartDetails from "../components/CartDetails";
+import Footer from "../components/Footer";
 
 export default function Cart() {
   let [cartCount, setCartCount] = useState(() => {
@@ -34,6 +35,7 @@ export default function Cart() {
           updateCartCount={updateCartCount}
         />
       </main>
+      <Footer />
     </>
   );
 }

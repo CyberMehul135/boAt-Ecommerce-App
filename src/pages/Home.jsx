@@ -5,6 +5,7 @@ import HeroSectionSlider from "../components/HeroSectionSlider";
 import ServiceHighlights from "../components/ServiceHighlights";
 import ProductCard from "../components/ProductCard";
 import Category from "../components/Category";
+import Footer from "../components/Footer";
 
 export default function Home() {
   let [products, setProducts] = useState([]);
@@ -36,7 +37,7 @@ export default function Home() {
     <>
       <AnnoucementBar />
       <NavBar cartCount={cartCount} />
-      <main className="h-full pt-[116px] w-full">
+      <main className="h-fit pt-[116px] w-full">
         <HeroSectionSlider />
         <ServiceHighlights />
         <div className="my-8">
@@ -48,6 +49,7 @@ export default function Home() {
           updateCartCount={updateCartCount}
         />
       </main>
+      <Footer />
     </>
   );
 }
