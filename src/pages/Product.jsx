@@ -50,7 +50,7 @@ export default function Product() {
       <AnnoucementBar />
       <NavBar cartCount={cartCount} />
       <main className="pt-[116px]">
-        <div className="max-w-[1600px] flex justify-between  px-10 mx-auto">
+        <div className="max-w-[1600px] flex justify-between  px-10 mx-auto max-md:px-3">
           <span>
             <Filter
               savedProducts={savedProducts}

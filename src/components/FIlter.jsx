@@ -103,7 +103,9 @@ export default function Filter({ savedProducts, filterProducts }) {
         <div className="bg-[rgb(239,244,247)] px-2 py-3 rounded border border-[rgb(226,235,239)]">
           <div className="font-bold cursor-pointer">
             <TuneIcon />
-            <span className="ml-3 text-[17px]">Filter By </span>
+            <span className="ml-3 text-[17px] max-md:text-[16px]">
+              Filter By{" "}
+            </span>
             <span>
               <ArrowDropDownIcon />
             </span>
@@ -115,7 +117,7 @@ export default function Filter({ savedProducts, filterProducts }) {
       <div
         className={
           filterOn
-            ? "fixed top-0 z-50 w-[320px] h-full transition-all duration-500 ease-out -ml-10 bg-white border"
+            ? "fixed top-0 z-50 w-[320px] h-full transition-all duration-500 ease-out -ml-10 max-md:-ml-3 bg-white border"
             : "fixed top-0 z-50 w-[320px] h-full transition-all duration-500 ease-out -ml-120 bg-white border"
         }
       >

@@ -56,7 +56,7 @@ export default function CategoryPage() {
       <AnnoucementBar />
       <NavBar cartCount={cartCount} />
       <main className="mt-[116px]">
-        <div className="max-w-[1600px] flex justify-between  px-10 mx-auto">
+        <div className="max-w-[1600px] flex justify-between  px-10 mx-auto max-md:px-3 max-md:gap-2">
           <span>
             <Filter
               savedProducts={savedCategoryProducts}

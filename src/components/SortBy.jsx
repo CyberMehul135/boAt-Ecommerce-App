@@ -36,7 +36,7 @@ export default function SortBy({ products, sortProducts }) {
         <select
           id="filter"
           onChange={sortProduct}
-          className="cursor-pointer outline-none"
+          className="cursor-pointer outline-none max-sm:w-[20px]"
         >
           <option value="featured">Featured</option>
           <option value="best selling">Best Selling</option>

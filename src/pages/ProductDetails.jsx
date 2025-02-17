@@ -49,8 +49,8 @@ export default function ProductDetails() {
     <>
       <AnnoucementBar />
       <NavBar cartCount={cartCount} />
-      <main className="pl-10 pr-10 mt-3 max-w-[1600px] w-full mx-auto flex gap-6 pt-[116px]">
-        <div className="max-w-[500px] w-[45%] max-h-[500px] rounded-lg overflow-hidden">
+      <main className="px-10 mt-3 max-w-[1600px] w-full mx-auto flex gap-6 pt-[116px] max-md:flex-col max-md:px-3 max-md:items-center">
+        <div className="max-w-[500px] w-[45%] max-h-[500px] rounded-lg overflow-hidden max-md:w-full max-md:max-h-[390px]">
           <img
             className="w-full h-full"
             src={productDetail.image}
@@ -58,7 +58,7 @@ export default function ProductDetails() {
           />
         </div>
 
-        <div className="flex-1 w-[55%]">
+        <div className="flex-1 w-[55%] max-md:w-full">
           <div className="pt-2 pb-2 text-[rgb(74,81,87)]">
             <span className="text-amber-400">★</span>
             <span>{productDetail.rating} | </span>
@@ -67,7 +67,7 @@ export default function ProductDetails() {
           <div className="text-3xl font-bold text-[rgb(26,32,36)] mb-1">
             {productDetail.name}
           </div>
-          <div className=" pt-1 pb-1 text-[rgb(74,81,87)]">
+          <div className=" pt-1 pb-1 text-[rgb(147,147,148)] max-md:text-[15px]">
             {" "}
             Wireless Earbuds with Massive Playback of upto 40 Hours, IPX5 Water
             & Sweat Resistance, IWP Technology, Type C Interface
