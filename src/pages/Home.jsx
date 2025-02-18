@@ -6,6 +6,7 @@ import ServiceHighlights from "../components/ServiceHighlights";
 import ProductCard from "../components/ProductCard";
 import Category from "../components/Category";
 import Footer from "../components/Footer";
+import ProductHeading from "../components/ProductHeading";
 
 export default function Home() {
   let [products, setProducts] = useState([]);
@@ -41,8 +42,10 @@ export default function Home() {
         <HeroSectionSlider />
         <ServiceHighlights />
         <div className="my-8">
+          <ProductHeading word1={"Shop by"} word2={"Categories"} />
           <Category />
         </div>
+        <ProductHeading word1={"Explore top"} word2={"Products"} />
         <ProductCard
           products={products}
           cartCount={cartCount}
