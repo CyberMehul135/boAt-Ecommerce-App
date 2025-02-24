@@ -5,6 +5,7 @@ import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import Home from "./pages/Home";
 import CategoryWiseProduct from "./pages/CategoryWiseProduct";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           path="/category/:categoryName"
           element={<CategoryWiseProduct />}
         />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );

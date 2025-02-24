@@ -28,7 +28,9 @@ export default function NavBar({ cartCount }) {
 
         <div className="ml-auto">
           <span>
-            <PermIdentityOutlinedIcon className="text-[rgba(65,63,63,0.9)]" />
+            <Link to={`/login`}>
+              <PermIdentityOutlinedIcon className="text-[rgba(65,63,63,0.9)]" />
+            </Link>
           </span>
           <span className="ml-5">
             <Link to={`/cart`}>
