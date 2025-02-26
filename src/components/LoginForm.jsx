@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "./Button";
 import { useEffect } from "react";
 
-export default function LoginForm() {
+export default function LoginForm({ setLoggedInUser }) {
   let [signIn, setSignIn] = useState(false);
 
   let [userData, setUserData] = useState({});
@@ -54,7 +54,15 @@ export default function LoginForm() {
         data.userPassword == userData2.userPassword
     );
 
-    console.log(userLoggedIn);
+    if (userLoggedIn) {
+      setLoggedInUser(userLoggedIn);
+      alert(`Logged In Sucessfully, Welcome ${userLoggedIn.userName}`);
+      setUserData2({});
+      window.location.href = "/";
+    } else {
+      setLoggedInUser(userLoggedIn);
+      alert("Wrong Details");
+    }
   };
 
   // (SignUp) Input Values Update Functions
@@ -128,7 +136,7 @@ export default function LoginForm() {
             </div>
 
             <div className="w-full mt-5 flex justify-center">
-              <Button text={"Register"} />
+              <Button text={"LogIn"} />
             </div>
           </form>
         ) : (

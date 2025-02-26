@@ -3,8 +3,11 @@ import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Link } from "react-router-dom";
 import HamBurgerMenu from "./HamburgerMenu";
+import Logout from "./Logout";
+import { useEffect, useState } from "react";
+import LogInSymbol from "./LogInSymbol";
 
-export default function NavBar({ cartCount }) {
+export default function NavBar({ cartCount, loggedInUser }) {
   return (
     <nav className="h-20 w-full border-b-[1px] border-[rgb(219,219,219)] fixed top-9 left-0 z-50 bg-white">
       <div className="h-20 max-w-[1600px] flex items-center pl-10 pr-10 mx-auto max-md:px-3 max-md:gap-4">
@@ -26,13 +29,20 @@ export default function NavBar({ cartCount }) {
           <span className="ml-4">About</span>
         </div>
 
-        <div className="ml-auto">
+        <div className="ml-auto flex gap-5">
           <span>
             <Link to={`/login`}>
-              <PermIdentityOutlinedIcon className="text-[rgba(65,63,63,0.9)]" />
+              {loggedInUser ? (
+                <LogInSymbol loggedInUser={loggedInUser} />
+              ) : (
+                <PermIdentityOutlinedIcon className="text-[rgba(65,63,63,0.9)]" />
+              )}
             </Link>
           </span>
-          <span className="ml-5">
+          <span className="max-md:hidden text-[rgb(84,82,82)]">
+            <Logout />
+          </span>
+          <span>
             <Link to={`/cart`}>
               <ShoppingCartOutlinedIcon className="text-[rgba(65,63,63,0.9)]" />
               <sup
@@ -42,7 +52,7 @@ export default function NavBar({ cartCount }) {
                     : null
                 }
               >
-                {cartCount}
+                {loggedInUser ? loggedInUser.cartCount : cartCount}
               </sup>
             </Link>
           </span>

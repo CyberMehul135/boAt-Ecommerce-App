@@ -4,6 +4,14 @@ import NavBar from "../components/NavBar";
 import { useEffect, useState } from "react";
 
 export default function Login() {
+  let [loggedInUser, setLoggedInUser] = useState(() => {
+    return JSON.parse(localStorage.getItem("loggedInUser")) || false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+  }, [loggedInUser]);
+
   let [cartCount, setCartCount] = useState(() => {
     return JSON.parse(localStorage.getItem("cartCount")) || 0;
   });
@@ -15,8 +23,8 @@ export default function Login() {
   return (
     <div>
       <AnnoucementBar />
-      <NavBar cartCount={cartCount} />
-      <LoginForm />
+      <NavBar cartCount={cartCount} loggedInUser={loggedInUser} />
+      <LoginForm setLoggedInUser={setLoggedInUser} />
     </div>
   );
 }

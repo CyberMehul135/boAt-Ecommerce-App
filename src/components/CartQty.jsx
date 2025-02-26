@@ -1,27 +1,68 @@
-export default function CartQty({ productId, cart, updateCart }) {
+export default function CartQty({
+  productId,
+  cart,
+  updateCart,
+  loggedInUser,
+  setLoggedInUser,
+}) {
   let getProductQty = () => {
-    let product = cart.find((product) => product.id === productId);
-    return product ? product.qty : 1;
+    if (loggedInUser) {
+      let product = loggedInUser.cart.find(
+        (product) => product.id === productId
+      );
+      return product ? product.qty : 1;
+    } else {
+      let product = cart.find((product) => product.id === productId);
+      return product ? product.qty : 1;
+    }
   };
 
   let incrementQty = () => {
-    let updatedCart = cart.map((product) =>
-      product.id === productId ? { ...product, qty: product.qty + 1 } : product
-    );
+    if (loggedInUser) {
+      let updatedCart = loggedInUser.cart.map((product) =>
+        product.id === productId
+          ? { ...product, qty: product.qty + 1 }
+          : product
+      );
 
-    updateCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+      setLoggedInUser({
+        ...loggedInUser,
+        cart: updatedCart,
+      });
+
+      // localStorage.setItem("cart", JSON.stringify(updatedCart));
+    } else {
+      let updatedCart = cart.map((product) =>
+        product.id === productId
+          ? { ...product, qty: product.qty + 1 }
+          : product
+      );
+
+      updateCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    }
   };
 
   let decrementQty = () => {
-    let updatedCart = cart.map((product) =>
-      product.id === productId && product.qty > 1
-        ? { ...product, qty: product.qty - 1 }
-        : product
-    );
+    if (loggedInUser) {
+      let updatedCart = loggedInUser.cart.map((product) =>
+        product.id === productId && product.qty > 1
+          ? { ...product, qty: product.qty - 1 }
+          : product
+      );
 
-    updateCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+      setLoggedInUser({ ...loggedInUser, cart: updatedCart });
+      // localStorage.setItem("cart", JSON.stringify(updatedCart));
+    } else {
+      let updatedCart = cart.map((product) =>
+        product.id === productId && product.qty > 1
+          ? { ...product, qty: product.qty - 1 }
+          : product
+      );
+
+      updateCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    }
   };
 
   return (

@@ -3,7 +3,13 @@ import Button from "./Button";
 import { Link } from "react-router-dom";
 import saleLogo from "../assets/Maskdone.png";
 
-export default function ProductCard({ products, cartCount, updateCartCount }) {
+export default function ProductCard({
+  products,
+  cartCount,
+  updateCartCount,
+  loggedInUser,
+  setLoggedInUser,
+}) {
   let [cart, setCart] = useState(() => {
     return JSON.parse(localStorage.getItem("cart")) || [];
   });
@@ -17,13 +23,29 @@ export default function ProductCard({ products, cartCount, updateCartCount }) {
     e.preventDefault(); // Prevent default behavior
 
     //check if product already in cart
-    let isProductInCart = cart.some((products) => products.id == product.id);
-    if (isProductInCart) {
-      alert("This Product is already in cart");
-      return;
+    if (loggedInUser) {
+      let isProductInCart = loggedInUser.cart.some(
+        (products) => products.id == product.id
+      );
+      if (isProductInCart) {
+        alert("This Product is already in cart");
+        return;
+      } else {
+        setLoggedInUser({
+          ...loggedInUser,
+          cart: [...loggedInUser.cart, product],
+          cartCount: (loggedInUser.cartCount += 1),
+        });
+      }
     } else {
-      setCart((cart) => [...cart, product]);
-      updateCartCount(cartCount + 1);
+      let isProductInCart = cart.some((products) => products.id == product.id);
+      if (isProductInCart) {
+        alert("This Product is already in cart");
+        return;
+      } else {
+        setCart((cart) => [...cart, product]);
+        updateCartCount(cartCount + 1);
+      }
     }
   };
 

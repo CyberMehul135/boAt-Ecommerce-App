@@ -27,6 +27,31 @@ export default function CategoryPage() {
       });
   }, [categoryName]);
 
+  let [allUserData, setAllUserData] = useState(() => {
+    return JSON.parse(localStorage.getItem("allUserData")) || [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("allUserData", JSON.stringify(allUserData));
+  }, [allUserData]);
+
+  let [loggedInUser, setLoggedInUser] = useState(() => {
+    return JSON.parse(localStorage.getItem("loggedInUser")) || false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+    setAllUserData(
+      allUserData.map((data) => {
+        if (data.userName == loggedInUser.userName) {
+          return loggedInUser;
+        } else {
+          return data;
+        }
+      })
+    );
+  }, [loggedInUser]);
+
   let [cartCount, setCartCount] = useState(() => {
     return JSON.parse(localStorage.getItem("cartCount")) || 0;
   });
@@ -55,7 +80,7 @@ export default function CategoryPage() {
   return (
     <>
       <AnnoucementBar />
-      <NavBar cartCount={cartCount} />
+      <NavBar cartCount={cartCount} loggedInUser={loggedInUser} />
       <main className="mt-[116px]">
         <div className="max-w-[1600px] flex justify-between  px-10 mx-auto max-md:px-3 max-md:gap-2">
           <span>
@@ -72,6 +97,8 @@ export default function CategoryPage() {
           products={categoryProducts}
           cartCount={cartCount}
           updateCartCount={updateCartCount}
+          loggedInUser={loggedInUser}
+          setLoggedInUser={setLoggedInUser}
         />
       </main>
       <Footer />

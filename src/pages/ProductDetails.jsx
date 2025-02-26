@@ -15,7 +15,32 @@ export default function ProductDetails() {
       .then((data) => setProductDetail(data));
   }, [id]);
 
+  let [allUserData, setAllUserData] = useState(() => {
+    return JSON.parse(localStorage.getItem("allUserData")) || [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("allUserData", JSON.stringify(allUserData));
+  }, [allUserData]);
+
   // Cart Functionality
+  let [loggedInUser, setLoggedInUser] = useState(() => {
+    return JSON.parse(localStorage.getItem("loggedInUser")) || false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+    setAllUserData(
+      allUserData.map((data) => {
+        if (data.userName == loggedInUser.userName) {
+          return loggedInUser;
+        } else {
+          return data;
+        }
+      })
+    );
+  }, [loggedInUser]);
+
   let [cartCount, setCartCount] = useState(() => {
     return parseInt(localStorage.getItem("cartCount")) || 0;
   });
@@ -32,24 +57,42 @@ export default function ProductDetails() {
 
   // Add-To-Cart
   let addToCart = () => {
-    // check if product alreay in cart
-    let isProductInCart = cart.some(
-      (product) => product.id == productDetail.id
-    );
+    if (loggedInUser) {
+      // check if product alreay in cart
+      let isProductInCart = loggedInUser.cart.some(
+        (product) => product.id == productDetail.id
+      );
 
-    if (isProductInCart) {
-      alert("This Product is alreay in the cart!");
-      return;
+      if (isProductInCart) {
+        alert("This Product is alreay in the cart!");
+        return;
+      } else {
+        setLoggedInUser({
+          ...loggedInUser,
+          cart: [...loggedInUser.cart, productDetail],
+          cartCount: (loggedInUser.cartCount += 1),
+        });
+      }
     } else {
-      setCart((cart) => [...cart, productDetail]);
-      setCartCount((cartCount) => cartCount + 1);
+      // check if product alreay in cart
+      let isProductInCart = cart.some(
+        (product) => product.id == productDetail.id
+      );
+
+      if (isProductInCart) {
+        alert("This Product is alreay in the cart!");
+        return;
+      } else {
+        setCart((cart) => [...cart, productDetail]);
+        setCartCount((cartCount) => cartCount + 1);
+      }
     }
   };
 
   return (
     <>
       <AnnoucementBar />
-      <NavBar cartCount={cartCount} />
+      <NavBar cartCount={cartCount} loggedInUser={loggedInUser} />
       <main className="px-10 mt-3 max-w-[1600px] w-full mx-auto flex gap-6 pt-[116px] max-md:flex-col max-md:px-3 max-md:items-center">
         <div className="max-w-[500px] w-[45%] max-h-[500px] rounded-lg overflow-hidden max-md:w-full max-md:max-h-[390px]">
           <img

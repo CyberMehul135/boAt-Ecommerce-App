@@ -5,6 +5,9 @@ import HomeIcon from "@mui/icons-material/Home";
 import CategoryIcon from "@mui/icons-material/Category";
 import InfoIcon from "@mui/icons-material/Info";
 import { Link } from "react-router-dom";
+import Logout from "./Logout";
+import LogInSymbol from "./LogInSymbol";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 export default function HamBurgerMenu() {
   let [hamBurgerMenuOn, setHamburgerMenuOn] = useState(false);
@@ -12,9 +15,16 @@ export default function HamBurgerMenu() {
   const onHamburgerMenu = () => setHamburgerMenuOn(!hamBurgerMenuOn);
   const offHamburgerMenu = () => setHamburgerMenuOn(!hamBurgerMenuOn);
 
+  let [loggedInUser, setLoggedInUser] = useState(() => {
+    return JSON.parse(localStorage.getItem("loggedInUser")) || false;
+  });
+
   return (
     <>
-      <div className="hidden max-md:block" onClick={onHamburgerMenu}>
+      <div
+        className="hidden max-md:block cursor-pointer"
+        onClick={onHamburgerMenu}
+      >
         <MenuIcon />
       </div>
 
@@ -28,7 +38,16 @@ export default function HamBurgerMenu() {
         {/* Header */}
         <header className="bg-white px-3 h-[10%] flex items-center justify-between">
           <span>
-            <span className="text-xl font-bold">Hello User</span>
+            <span className="text-xl font-bold flex gap-2">
+              <span>
+                {loggedInUser ? (
+                  <LogInSymbol loggedInUser={loggedInUser} />
+                ) : (
+                  <AccountCircleIcon />
+                )}
+              </span>
+              <span>Hello {loggedInUser ? loggedInUser.userName : "User"}</span>
+            </span>
           </span>
           <span onClick={offHamburgerMenu}>
             <CancelIcon className="cursor-pointer" />
@@ -59,6 +78,13 @@ export default function HamBurgerMenu() {
               <InfoIcon />
             </span>
             <span className="ml-2">About</span>
+          </span>
+
+          <span className="h-14 flex items-center">
+            <span>
+              <Logout />
+            </span>
+            <span className="ml-2">Logout</span>
           </span>
         </div>
       </div>

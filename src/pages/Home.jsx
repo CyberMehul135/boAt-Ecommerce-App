@@ -21,6 +21,31 @@ export default function Home() {
       });
   }, []);
 
+  let [allUserData, setAllUserData] = useState(() => {
+    return JSON.parse(localStorage.getItem("allUserData")) || [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("allUserData", JSON.stringify(allUserData));
+  }, [allUserData]);
+
+  let [loggedInUser, setLoggedInUser] = useState(() => {
+    return JSON.parse(localStorage.getItem("loggedInUser")) || false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("loggedInUser", JSON.stringify(loggedInUser));
+    setAllUserData(
+      allUserData.map((data) => {
+        if (data.userName == loggedInUser.userName) {
+          return loggedInUser;
+        } else {
+          return data;
+        }
+      })
+    );
+  }, [loggedInUser]);
+
   let [cartCount, setCartCount] = useState(() => {
     return JSON.parse(localStorage.getItem("cartCount")) || 0;
   });
@@ -37,7 +62,7 @@ export default function Home() {
   return (
     <>
       <AnnoucementBar />
-      <NavBar cartCount={cartCount} />
+      <NavBar cartCount={cartCount} loggedInUser={loggedInUser} />
       <main className="h-fit pt-[116px] w-full">
         <HeroSectionSlider />
         <ServiceHighlights />
@@ -50,6 +75,8 @@ export default function Home() {
           products={products}
           cartCount={cartCount}
           updateCartCount={updateCartCount}
+          loggedInUser={loggedInUser}
+          setLoggedInUser={setLoggedInUser}
         />
       </main>
       <Footer />
