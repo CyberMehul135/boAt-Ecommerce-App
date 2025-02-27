@@ -6,23 +6,23 @@ import SortBy from "../components/SortBy";
 import Filter from "../components/Filter";
 import Footer from "../components/Footer";
 
-export default function Product() {
-  let [allProducts, setAllProducts] = useState({});
-  let [products, setProducts] = useState([]);
-  let [savedProducts, setSavedProducts] = useState([]);
+export default function Product({ allProducts }) {
+  let [products, setProducts] = useState(() =>
+    Object.values(allProducts).flat()
+  );
+  let [savedProducts, setSavedProducts] = useState(() =>
+    Object.values(allProducts).flat()
+  );
 
   useEffect(() => {
-    fetch("/api/products")
-      .then((response) => response.json())
-      .then((data) => {
-        setAllProducts(data);
-      });
-  }, []);
-
-  useEffect(() => {
-    let newValue = Object.values(allProducts).flat();
-    setProducts(newValue);
-    setSavedProducts(newValue);
+    if (!allProducts?.TrueWirelessEarbuds) {
+      fetch("/api/products")
+        .then((response) => response.json())
+        .then((data) => {
+          setProducts(data.TrueWirelessEarbuds);
+          setSavedProducts(data.TrueWirelessEarbuds);
+        });
+    }
   }, [allProducts]);
 
   let [allUserData, setAllUserData] = useState(() => {

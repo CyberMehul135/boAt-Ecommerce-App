@@ -8,18 +8,26 @@ import Category from "../components/Category";
 import Footer from "../components/Footer";
 import ProductHeading from "../components/ProductHeading";
 
-export default function Home() {
-  let [products, setProducts] = useState([]);
-  let [savedProducts, setSavedProducts] = useState([]);
+export default function Home({ allProducts }) {
+  let [products, setProducts] = useState(
+    () => allProducts.TrueWirelessEarbuds || []
+  );
+  let [savedProducts, setSavedProducts] = useState(
+    () => allProducts.TrueWirelessEarbuds || []
+  );
 
   useEffect(() => {
-    fetch("/api/products")
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data.TrueWirelessEarbuds);
-        setSavedProducts(data.TrueWirelessEarbuds);
-      });
-  }, []);
+    if (!allProducts?.TrueWirelessEarbuds) {
+      fetch("/api/products")
+        .then((response) => response.json())
+        .then((data) => {
+          setProducts(data.TrueWirelessEarbuds);
+          setSavedProducts(data.TrueWirelessEarbuds);
+        });
+    }
+  }, [allProducts]);
+
+  console.log(allProducts.TrueWirelessEarbuds);
 
   let [allUserData, setAllUserData] = useState(() => {
     return JSON.parse(localStorage.getItem("allUserData")) || [];
@@ -68,7 +76,7 @@ export default function Home() {
         <ServiceHighlights />
         <div className="my-8">
           <ProductHeading word1={"Shop by"} word2={"Categories"} />
-          <Category />
+          <Category allProduct={allProducts} />
         </div>
         <ProductHeading word1={"Explore top"} word2={"Products"} />
         <ProductCard

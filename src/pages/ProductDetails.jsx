@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import AnnoucementBar from "../components/AnnoucementBar";
 import Button from "../components/Button";
@@ -7,13 +7,19 @@ import Footer from "../components/Footer";
 
 export default function ProductDetails() {
   let { id } = useParams();
-  let [productDetail, setProductDetail] = useState();
+  let location = useLocation();
+
+  let [productDetail, setProductDetail] = useState(
+    () => location.state?.product || []
+  );
 
   useEffect(() => {
-    fetch(`/api/product/${id}`)
-      .then((response) => response.json())
-      .then((data) => setProductDetail(data));
-  }, [id]);
+    if (productDetail.length === 0) {
+      fetch(`/api/product/${id}`)
+        .then((response) => response.json())
+        .then((data) => setProductDetail(data));
+    }
+  }, [id, productDetail]);
 
   let [allUserData, setAllUserData] = useState(() => {
     return JSON.parse(localStorage.getItem("allUserData")) || [];

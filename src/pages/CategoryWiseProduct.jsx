@@ -1,31 +1,37 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import AnnoucementBar from "../components/AnnoucementBar";
 import NavBar from "../components/NavBar";
 import SortBy from "../components/SortBy";
 import Filter from "../components/Filter";
 import Footer from "../components/Footer";
+import ProductHeading from "../components/ProductHeading";
 
 export default function CategoryPage() {
+  let location = useLocation();
+
   let { categoryName } = useParams();
   let [allProducts, setAllProducts] = useState({});
-  let [categoryProducts, setCategoryProducts] = useState([]);
-  let [savedCategoryProducts, setSavedCategoryProducts] = useState([]);
-
-  console.log(savedCategoryProducts);
+  let [categoryProducts, setCategoryProducts] = useState(location.state || []);
+  let [savedCategoryProducts, setSavedCategoryProducts] = useState(
+    location.state || []
+  );
 
   useEffect(() => {
-    fetch("/api/products")
-      .then((response) => response.json())
-      .then((data) => {
-        setAllProducts(data);
-        if (data[categoryName]) {
-          setCategoryProducts(data[categoryName]);
-          setSavedCategoryProducts(data[categoryName]);
-        }
-      });
-  }, [categoryName]);
+    if (categoryProducts.length === 0) {
+      fetch("/api/products")
+        .then((response) => response.json())
+        .then((data) => {
+          setAllProducts(data);
+          if (data[categoryName]) {
+            setCategoryProducts(data[categoryName]);
+            setSavedCategoryProducts(data[categoryName]);
+          }
+        });
+    }
+  }, [categoryName, categoryProducts]);
 
   let [allUserData, setAllUserData] = useState(() => {
     return JSON.parse(localStorage.getItem("allUserData")) || [];
