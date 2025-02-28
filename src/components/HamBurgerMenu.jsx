@@ -73,12 +73,14 @@ export default function HamBurgerMenu() {
             </span>
           </Link>
 
-          <span className="h-14 flex items-center">
-            <span>
-              <InfoIcon />
+          <Link to={`/about`}>
+            <span className="h-14 flex items-center">
+              <span>
+                <InfoIcon />
+              </span>
+              <span className="ml-2">Contact</span>
             </span>
-            <span className="ml-2">About</span>
-          </span>
+          </Link>
 
           <span className="h-14 flex items-center">
             <span>

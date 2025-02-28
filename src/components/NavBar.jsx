@@ -26,7 +26,9 @@ export default function NavBar({ cartCount, loggedInUser }) {
           <span className="ml-4">
             <Link to={`/product`}>boAt Products</Link>
           </span>
-          <span className="ml-4">About</span>
+          <span className="ml-4">
+            <Link to={`/about`}>Contact</Link>{" "}
+          </span>
         </div>
 
         <div className="ml-auto flex gap-5">

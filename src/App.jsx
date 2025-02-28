@@ -7,6 +7,7 @@ import Cart from "./pages/Cart";
 import Home from "./pages/Home";
 import CategoryWiseProduct from "./pages/CategoryWiseProduct";
 import Login from "./pages/Login";
+import Contact from "./pages/Contact";
 
 function App() {
   let [allProducts, setAllProducts] = useState({});
@@ -34,6 +35,7 @@ function App() {
           element={<CategoryWiseProduct />}
         />
         <Route path="/login" element={<Login />} />
+        <Route path="/about" element={<Contact />} />
       </Routes>
     </Router>
   );
