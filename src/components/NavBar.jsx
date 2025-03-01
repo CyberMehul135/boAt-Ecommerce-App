@@ -49,7 +49,11 @@ export default function NavBar({ cartCount, loggedInUser }) {
               <ShoppingCartOutlinedIcon className="text-[rgba(65,63,63,0.9)]" />
               <sup
                 className={
-                  cartCount
+                  loggedInUser
+                    ? loggedInUser.cartCount
+                      ? "px-[5px] rounded-lg bg-red-500 text-white text-[11px]"
+                      : null
+                    : cartCount
                     ? "px-[5px] rounded-lg bg-red-500 text-white text-[11px]"
                     : null
                 }

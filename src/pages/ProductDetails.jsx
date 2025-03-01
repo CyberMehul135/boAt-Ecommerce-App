@@ -4,8 +4,9 @@ import NavBar from "../components/NavBar";
 import AnnoucementBar from "../components/AnnoucementBar";
 import Button from "../components/Button";
 import Footer from "../components/Footer";
+import ToastPopup from "../components/ToastPopup";
 
-export default function ProductDetails() {
+export default function ProductDetails({ popUp, setPopUp }) {
   let { id } = useParams();
   let location = useLocation();
 
@@ -77,6 +78,7 @@ export default function ProductDetails() {
           ...loggedInUser,
           cart: [...loggedInUser.cart, productDetail],
           cartCount: (loggedInUser.cartCount += 1),
+          popUp: { ...loggedInUser.popUp, name: productDetail.name, on: true },
         });
       }
     } else {
@@ -91,6 +93,7 @@ export default function ProductDetails() {
       } else {
         setCart((cart) => [...cart, productDetail]);
         setCartCount((cartCount) => cartCount + 1);
+        setPopUp({ ...popUp, name: productDetail.name, on: true });
       }
     }
   };
@@ -100,6 +103,12 @@ export default function ProductDetails() {
       <AnnoucementBar />
       <NavBar cartCount={cartCount} loggedInUser={loggedInUser} />
       <main className="px-10 mt-3 max-w-[1600px] w-full mx-auto flex gap-6 pt-[116px] max-md:flex-col max-md:px-3 max-md:items-center">
+        <ToastPopup
+          popUp={popUp}
+          setPopUp={setPopUp}
+          loggedInUser={loggedInUser}
+          setLoggedInUser={setLoggedInUser}
+        />
         <div className="max-w-[500px] w-[45%] max-h-[500px] rounded-lg overflow-hidden max-md:w-full max-md:max-h-[390px]">
           <img
             className="w-full h-full"

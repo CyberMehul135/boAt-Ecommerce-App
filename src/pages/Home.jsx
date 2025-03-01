@@ -7,8 +7,9 @@ import ProductCard from "../components/ProductCard";
 import Category from "../components/Category";
 import Footer from "../components/Footer";
 import ProductHeading from "../components/ProductHeading";
+import ToastPopup from "../components/ToastPopup";
 
-export default function Home({ allProducts }) {
+export default function Home({ allProducts, popUp, setPopUp }) {
   let [products, setProducts] = useState(
     () => allProducts.TrueWirelessEarbuds || []
   );
@@ -26,8 +27,6 @@ export default function Home({ allProducts }) {
         });
     }
   }, [allProducts]);
-
-  console.log(allProducts.TrueWirelessEarbuds);
 
   let [allUserData, setAllUserData] = useState(() => {
     return JSON.parse(localStorage.getItem("allUserData")) || [];
@@ -72,6 +71,12 @@ export default function Home({ allProducts }) {
       <AnnoucementBar />
       <NavBar cartCount={cartCount} loggedInUser={loggedInUser} />
       <main className="h-fit pt-[116px] w-full">
+        <ToastPopup
+          popUp={popUp}
+          setPopUp={setPopUp}
+          loggedInUser={loggedInUser}
+          setLoggedInUser={setLoggedInUser}
+        />
         <HeroSectionSlider />
         <ServiceHighlights />
         <div className="my-8">
@@ -85,6 +90,8 @@ export default function Home({ allProducts }) {
           updateCartCount={updateCartCount}
           loggedInUser={loggedInUser}
           setLoggedInUser={setLoggedInUser}
+          popUp={popUp}
+          setPopUp={setPopUp}
         />
       </main>
       <Footer />

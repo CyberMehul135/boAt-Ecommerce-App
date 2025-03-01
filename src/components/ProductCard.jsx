@@ -9,6 +9,8 @@ export default function ProductCard({
   updateCartCount,
   loggedInUser,
   setLoggedInUser,
+  popUp,
+  setPopUp,
 }) {
   let [cart, setCart] = useState(() => {
     return JSON.parse(localStorage.getItem("cart")) || [];
@@ -36,6 +38,7 @@ export default function ProductCard({
           ...loggedInUser,
           cart: [...loggedInUser.cart, product],
           cartCount: (loggedInUser.cartCount += 1),
+          popUp: { ...loggedInUser.popUp, name: product.name, on: true },
         });
       }
     } else {
@@ -46,6 +49,7 @@ export default function ProductCard({
       } else {
         setCart((cart) => [...cart, product]);
         updateCartCount(cartCount + 1);
+        setPopUp({ ...popUp, name: product.name, on: true });
       }
     }
   };

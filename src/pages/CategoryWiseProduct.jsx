@@ -8,8 +8,9 @@ import SortBy from "../components/SortBy";
 import Filter from "../components/Filter";
 import Footer from "../components/Footer";
 import ProductHeading from "../components/ProductHeading";
+import ToastPopup from "../components/ToastPopup";
 
-export default function CategoryPage() {
+export default function CategoryPage({ popUp, setPopUp }) {
   let location = useLocation();
 
   let { categoryName } = useParams();
@@ -88,6 +89,12 @@ export default function CategoryPage() {
       <AnnoucementBar />
       <NavBar cartCount={cartCount} loggedInUser={loggedInUser} />
       <main className="mt-[116px]">
+        <ToastPopup
+          popUp={popUp}
+          setPopUp={setPopUp}
+          loggedInUser={loggedInUser}
+          setLoggedInUser={setLoggedInUser}
+        />
         <div className="max-w-[1600px] flex justify-between  px-10 mx-auto max-md:px-3 max-md:gap-2">
           <span>
             <Filter
@@ -105,6 +112,8 @@ export default function CategoryPage() {
           updateCartCount={updateCartCount}
           loggedInUser={loggedInUser}
           setLoggedInUser={setLoggedInUser}
+          popUp={popUp}
+          setPopUp={setPopUp}
         />
       </main>
       <Footer />

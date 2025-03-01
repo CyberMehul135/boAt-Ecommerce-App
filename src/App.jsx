@@ -20,19 +20,36 @@ function App() {
       });
   }, []);
 
+  // Popup
+  let [popUp, setPopUp] = useState({ name: "", on: false });
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home allProducts={allProducts} />} />
+        <Route
+          path="/"
+          element={
+            <Home allProducts={allProducts} popUp={popUp} setPopUp={setPopUp} />
+          }
+        />
         <Route
           path="/product"
-          element={<Product allProducts={allProducts} />}
+          element={
+            <Product
+              allProducts={allProducts}
+              popUp={popUp}
+              setPopUp={setPopUp}
+            />
+          }
         />
-        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route
+          path="/product/:id"
+          element={<ProductDetails popUp={popUp} setPopUp={setPopUp} />}
+        />
         <Route path="/cart" element={<Cart />} />
         <Route
           path="/category/:categoryName"
-          element={<CategoryWiseProduct />}
+          element={<CategoryWiseProduct popUp={popUp} setPopUp={setPopUp} />}
         />
         <Route path="/login" element={<Login />} />
         <Route path="/about" element={<Contact />} />

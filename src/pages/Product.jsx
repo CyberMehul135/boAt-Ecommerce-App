@@ -5,8 +5,9 @@ import ProductCard from "../components/ProductCard";
 import SortBy from "../components/SortBy";
 import Filter from "../components/Filter";
 import Footer from "../components/Footer";
+import ToastPopup from "../components/ToastPopup";
 
-export default function Product({ allProducts }) {
+export default function Product({ allProducts, popUp, setPopUp }) {
   let [products, setProducts] = useState(() =>
     Object.values(allProducts).flat()
   );
@@ -76,6 +77,12 @@ export default function Product({ allProducts }) {
       <AnnoucementBar />
       <NavBar cartCount={cartCount} loggedInUser={loggedInUser} />
       <main className="pt-[116px]">
+        <ToastPopup
+          popUp={popUp}
+          setPopUp={setPopUp}
+          loggedInUser={loggedInUser}
+          setLoggedInUser={setLoggedInUser}
+        />
         <div className="max-w-[1600px] flex justify-between  px-10 mx-auto max-md:px-3">
           <span>
             <Filter
@@ -93,6 +100,8 @@ export default function Product({ allProducts }) {
           updateCartCount={updateCartCount}
           loggedInUser={loggedInUser}
           setLoggedInUser={setLoggedInUser}
+          popUp={popUp}
+          setPopUp={setPopUp}
         />
       </main>
       <Footer />

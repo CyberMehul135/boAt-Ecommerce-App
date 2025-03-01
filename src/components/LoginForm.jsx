@@ -80,6 +80,7 @@ export default function LoginForm({ setLoggedInUser }) {
       userPassword: e.target.value,
       cart: [],
       cartCount: 0,
+      popUp: { name: "", on: false },
     });
   };
 
