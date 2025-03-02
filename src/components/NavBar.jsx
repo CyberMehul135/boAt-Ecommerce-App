@@ -7,12 +7,15 @@ import Logout from "./Logout";
 import { useEffect, useState } from "react";
 import LogInSymbol from "./LogInSymbol";
 
-export default function NavBar({ cartCount, loggedInUser }) {
+export default function NavBar({ cartCount, loggedInUser, setLoggedInUser }) {
   return (
     <nav className="h-20 w-full border-b-[1px] border-[rgb(219,219,219)] fixed top-9 left-0 z-50 bg-white">
       <div className="h-20 max-w-[1600px] flex items-center pl-10 pr-10 mx-auto max-md:px-3 max-md:gap-4">
         <div>
-          <HamBurgerMenu />
+          <HamBurgerMenu
+            loggedInUser={loggedInUser}
+            setLoggedInUser={setLoggedInUser}
+          />
         </div>
 
         <div className="w-[85px] mr-12 max-md:w-[60px]">
@@ -42,7 +45,10 @@ export default function NavBar({ cartCount, loggedInUser }) {
             </Link>
           </span>
           <span className="max-md:hidden text-[rgb(84,82,82)]">
-            <Logout />
+            <Logout
+              loggedInUser={loggedInUser}
+              setLoggedInUser={setLoggedInUser}
+            />
           </span>
           <span>
             <Link to={`/cart`}>

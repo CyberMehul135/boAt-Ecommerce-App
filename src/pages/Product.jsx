@@ -75,7 +75,11 @@ export default function Product({ allProducts, popUp, setPopUp }) {
   return (
     <>
       <AnnoucementBar />
-      <NavBar cartCount={cartCount} loggedInUser={loggedInUser} />
+      <NavBar
+        cartCount={cartCount}
+        loggedInUser={loggedInUser}
+        setLoggedInUser={setLoggedInUser}
+      />
       <main className="pt-[116px]">
         <ToastPopup
           popUp={popUp}

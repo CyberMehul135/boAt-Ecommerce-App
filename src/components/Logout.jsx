@@ -1,11 +1,14 @@
 import LogoutIcon from "@mui/icons-material/Logout";
 
-export default function Logout() {
+export default function Logout({ loggedInUser, setLoggedInUser }) {
   let handleLogout = () => {
     let logout = confirm("Are you sure you want to logout!");
     if (logout) {
+      setLoggedInUser(false);
       localStorage.removeItem("loggedInUser");
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
     }
   };
 

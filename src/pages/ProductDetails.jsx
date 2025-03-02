@@ -101,7 +101,11 @@ export default function ProductDetails({ popUp, setPopUp }) {
   return (
     <>
       <AnnoucementBar />
-      <NavBar cartCount={cartCount} loggedInUser={loggedInUser} />
+      <NavBar
+        cartCount={cartCount}
+        loggedInUser={loggedInUser}
+        setLoggedInUser={setLoggedInUser}
+      />
       <main className="px-10 mt-3 max-w-[1600px] w-full mx-auto flex gap-6 pt-[116px] max-md:flex-col max-md:px-3 max-md:items-center">
         <ToastPopup
           popUp={popUp}

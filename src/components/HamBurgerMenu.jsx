@@ -9,15 +9,11 @@ import Logout from "./Logout";
 import LogInSymbol from "./LogInSymbol";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-export default function HamBurgerMenu() {
+export default function HamBurgerMenu({ loggedInUser, setLoggedInUser }) {
   let [hamBurgerMenuOn, setHamburgerMenuOn] = useState(false);
 
   const onHamburgerMenu = () => setHamburgerMenuOn(!hamBurgerMenuOn);
   const offHamburgerMenu = () => setHamburgerMenuOn(!hamBurgerMenuOn);
-
-  let [loggedInUser, setLoggedInUser] = useState(() => {
-    return JSON.parse(localStorage.getItem("loggedInUser")) || false;
-  });
 
   return (
     <>
@@ -84,7 +80,10 @@ export default function HamBurgerMenu() {
 
           <span className="h-14 flex items-center">
             <span>
-              <Logout />
+              <Logout
+                loggedInUser={loggedInUser}
+                setLoggedInUser={setLoggedInUser}
+              />
             </span>
             <span className="ml-2">Logout</span>
           </span>

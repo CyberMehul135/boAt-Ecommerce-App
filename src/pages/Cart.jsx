@@ -51,7 +51,11 @@ export default function Cart() {
   return (
     <>
       <AnnoucementBar />
-      <NavBar cartCount={cartCount} loggedInUser={loggedInUser} />
+      <NavBar
+        cartCount={cartCount}
+        loggedInUser={loggedInUser}
+        setLoggedInUser={setLoggedInUser}
+      />
       <main className="pt-[116px]">
         <CartDetails
           cart={cart}

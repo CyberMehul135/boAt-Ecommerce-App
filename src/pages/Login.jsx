@@ -23,7 +23,11 @@ export default function Login() {
   return (
     <div>
       <AnnoucementBar />
-      <NavBar cartCount={cartCount} loggedInUser={loggedInUser} />
+      <NavBar
+        cartCount={cartCount}
+        loggedInUser={loggedInUser}
+        setLoggedInUser={setLoggedInUser}
+      />
       <LoginForm setLoggedInUser={setLoggedInUser} />
     </div>
   );

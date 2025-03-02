@@ -45,7 +45,11 @@ export default function Contact() {
   return (
     <>
       <AnnoucementBar />
-      <NavBar cartCount={cartCount} loggedInUser={loggedInUser} />
+      <NavBar
+        cartCount={cartCount}
+        loggedInUser={loggedInUser}
+        setLoggedInUser={setLoggedInUser}
+      />
       <main className="h-fit pt-[116px]">
         <div className="max-w-[1600px] flex justify-between  px-10 mx-auto max-md:px-3 mt-5 gap-5 max-md:flex-col">
           <span className="w-full">

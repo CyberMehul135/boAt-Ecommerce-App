@@ -87,7 +87,11 @@ export default function CategoryPage({ popUp, setPopUp }) {
   return (
     <>
       <AnnoucementBar />
-      <NavBar cartCount={cartCount} loggedInUser={loggedInUser} />
+      <NavBar
+        cartCount={cartCount}
+        loggedInUser={loggedInUser}
+        setLoggedInUser={setLoggedInUser}
+      />
       <main className="mt-[116px]">
         <ToastPopup
           popUp={popUp}
