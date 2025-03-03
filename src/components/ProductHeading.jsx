@@ -16,7 +16,6 @@ export default function ProductHeading({ word1, word2 }) {
         <span key={index}>{char}</span>
       )
     );
-    console.log(updatedLetters);
 
     setStyledWord(updatedLetters);
   }, [word2]);

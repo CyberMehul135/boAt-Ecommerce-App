@@ -113,12 +113,20 @@ export default function Filter({ savedProducts, filterProducts }) {
         </div>
       </div>
 
+      {/* Click outside to close sidebar */}
+      {filterOn && (
+        <div
+          className="fixed top-0 left-0 w-full h-full z-40"
+          onClick={filterOff}
+        ></div>
+      )}
+
       {/* Filter Panel */}
       <div
         className={
           filterOn
-            ? "fixed top-0 z-50 w-[320px] h-full transition-all duration-500 ease-out -ml-10 max-md:-ml-3 bg-white border"
-            : "fixed top-0 z-50 w-[320px] h-full transition-all duration-500 ease-out -ml-120 bg-white border"
+            ? "fixed top-0 z-50 w-[320px] h-full transition-all duration-500 ease-out -ml-10 max-md:-ml-3 bg-white border border-[rgb(209,213,220)]"
+            : "fixed top-0 z-50 w-[320px] h-full transition-all duration-500 ease-out -ml-120 bg-white border border-[rgb(209,213,220)]"
         }
       >
         {/* Header */}
