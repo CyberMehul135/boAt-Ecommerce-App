@@ -84,6 +84,11 @@ export default function CategoryPage({ popUp, setPopUp }) {
     setCategoryProducts((products) => [...sortedProducts]);
   };
 
+  // Scroll to top when this component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <AnnoucementBar />

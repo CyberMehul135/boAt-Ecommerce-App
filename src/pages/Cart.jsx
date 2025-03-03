@@ -49,6 +49,11 @@ export default function Cart() {
     localStorage.setItem("cartCount", JSON.stringify(cartCount));
   };
 
+  // Scroll to top when this component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <AnnoucementBar />

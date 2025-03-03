@@ -30,6 +30,11 @@ export default function Product({ allProducts, popUp, setPopUp }) {
     return JSON.parse(localStorage.getItem("allUserData")) || [];
   });
 
+  // Scroll to top when this component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   useEffect(() => {
     localStorage.setItem("allUserData", JSON.stringify(allUserData));
   }, [allUserData]);

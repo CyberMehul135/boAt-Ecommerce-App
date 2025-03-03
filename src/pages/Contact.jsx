@@ -42,6 +42,12 @@ export default function Contact() {
   let sendMessage = (e) => {
     e.preventDefault();
   };
+
+  // Scroll to top when this component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <AnnoucementBar />

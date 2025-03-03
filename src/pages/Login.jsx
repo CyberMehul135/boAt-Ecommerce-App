@@ -20,6 +20,11 @@ export default function Login() {
     return localStorage.setItem("cartCount", JSON.stringify(cartCount));
   }, [cartCount]);
 
+  // Scroll to top when this component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div>
       <AnnoucementBar />

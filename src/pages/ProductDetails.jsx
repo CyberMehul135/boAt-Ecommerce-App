@@ -30,6 +30,11 @@ export default function ProductDetails({ popUp, setPopUp }) {
     localStorage.setItem("allUserData", JSON.stringify(allUserData));
   }, [allUserData]);
 
+  // Scroll to top when this component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Cart Functionality
   let [loggedInUser, setLoggedInUser] = useState(() => {
     return JSON.parse(localStorage.getItem("loggedInUser")) || false;
