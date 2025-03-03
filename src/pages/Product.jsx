@@ -3,7 +3,7 @@ import AnnoucementBar from "../components/AnnoucementBar";
 import NavBar from "../components/NavBar";
 import ProductCard from "../components/ProductCard";
 import SortBy from "../components/SortBy";
-import Filter from "../components/Filter";
+import Filter from "../components/FIlter.jsx";
 import Footer from "../components/Footer";
 import ToastPopup from "../components/ToastPopup";
 
