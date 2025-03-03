@@ -35,6 +35,11 @@ export default function ProductDetails({ popUp, setPopUp }) {
     window.scrollTo(0, 0);
   }, []);
 
+  // Title
+  useEffect(() => {
+    document.title = "Products Detail";
+  }, []);
+
   // Cart Functionality
   let [loggedInUser, setLoggedInUser] = useState(() => {
     return JSON.parse(localStorage.getItem("loggedInUser")) || false;

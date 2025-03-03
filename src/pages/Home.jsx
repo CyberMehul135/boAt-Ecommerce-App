@@ -66,6 +66,10 @@ export default function Home({ allProducts, popUp, setPopUp }) {
     setCartCount(updatedCartCount);
   };
 
+  useEffect(() => {
+    document.title = "Buy Earbuds, Headphones, ";
+  }, []);
+
   return (
     <>
       <AnnoucementBar />

@@ -89,6 +89,11 @@ export default function CategoryPage({ popUp, setPopUp }) {
     window.scrollTo(0, 0);
   }, []);
 
+  // Title
+  useEffect(() => {
+    document.title = "Category Wise Product";
+  }, []);
+
   return (
     <>
       <AnnoucementBar />

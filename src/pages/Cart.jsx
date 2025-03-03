@@ -54,6 +54,11 @@ export default function Cart() {
     window.scrollTo(0, 0);
   }, []);
 
+  // Title
+  useEffect(() => {
+    document.title = "Cart";
+  }, []);
+
   return (
     <>
       <AnnoucementBar />

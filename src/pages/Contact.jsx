@@ -48,6 +48,11 @@ export default function Contact() {
     window.scrollTo(0, 0);
   }, []);
 
+  // Title
+  useEffect(() => {
+    document.title = "Contact";
+  }, []);
+
   return (
     <>
       <AnnoucementBar />

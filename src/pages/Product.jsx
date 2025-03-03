@@ -77,6 +77,11 @@ export default function Product({ allProducts, popUp, setPopUp }) {
     setProducts((products) => [...sortedProducts]);
   };
 
+  // Title
+  useEffect(() => {
+    document.title = "Products - My Store";
+  }, []);
+
   return (
     <>
       <AnnoucementBar />

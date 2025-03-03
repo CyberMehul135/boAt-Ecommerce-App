@@ -25,6 +25,11 @@ export default function Login() {
     window.scrollTo(0, 0);
   }, []);
 
+  // Title
+  useEffect(() => {
+    document.title = "Login";
+  }, []);
+
   return (
     <div>
       <AnnoucementBar />
