@@ -2,7 +2,7 @@ import Logo from "../assets/logo.svg";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { Link } from "react-router-dom";
-import HamBurgerMenu from "./HamburgerMenu";
+import HamBurgerMenu from "./HamBurgerMenu";
 import Logout from "./Logout";
 import { useEffect, useState } from "react";
 import LogInSymbol from "./LogInSymbol";
