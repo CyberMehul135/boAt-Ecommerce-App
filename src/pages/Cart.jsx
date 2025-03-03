@@ -3,6 +3,7 @@ import AnnoucementBar from "../components/AnnoucementBar";
 import NavBar from "../components/NavBar";
 import CartDetails from "../components/CartDetails";
 import Footer from "../components/Footer";
+import BillTotal from "../components/BillTotal";
 
 export default function Cart() {
   let [allUserData, setAllUserData] = useState(() => {
@@ -65,6 +66,7 @@ export default function Cart() {
           loggedInUser={loggedInUser}
           setLoggedInUser={setLoggedInUser}
         />
+        <BillTotal cart={cart} loggedInUser={loggedInUser} />
       </main>
       <Footer />
     </>
