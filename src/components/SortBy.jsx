@@ -23,7 +23,6 @@ export default function SortBy({ products, sortProducts }) {
           )
         : products;
     sortProducts(sortedProducts);
-    console.log(sortedProducts);
   };
   return (
     <div className="w-full flex justify-center mt-5">

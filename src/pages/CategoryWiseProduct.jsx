@@ -7,7 +7,6 @@ import NavBar from "../components/NavBar";
 import SortBy from "../components/SortBy";
 import Filter from "../components/FIlter";
 import Footer from "../components/Footer";
-import ProductHeading from "../components/ProductHeading";
 import ToastPopup from "../components/ToastPopup";
 
 export default function CategoryPage({ popUp, setPopUp }) {
