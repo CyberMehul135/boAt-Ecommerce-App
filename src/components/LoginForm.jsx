@@ -60,7 +60,7 @@ export default function LoginForm({ setLoggedInUser }) {
       setUserData2({});
       window.location.href = "/";
     } else {
-      setLoggedInUser(userLoggedIn);
+      setLoggedInUser(false);
       alert("Wrong Details");
     }
   };
